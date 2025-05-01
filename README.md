@@ -19,11 +19,11 @@ This project analyzes **sales data** using **SQLite & Python**, generating key i
 📌 Creating the Sales Database
 import sqlite3
 
-# Connect to SQLite
+## Connect to SQLite
 conn = sqlite3.connect("sales_data.db")
 cursor = conn.cursor()
 
-# Create table (if it doesn't exist)
+## Create table (if it doesn't exist)
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS sales (
     id INTEGER PRIMARY KEY,
@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS sales (
 )
 """)
 
-# Insert sample data with 10+ unique products
+## Insert sample data with 10+ unique products
 sales_data = [
     ("Product A", 10, 5.0), ("Product B", 15, 7.5), ("Product C", 8, 12.0),
     ("Product D", 20, 10.0), ("Product E", 5, 4.0), ("Product F", 18, 15.0),
@@ -44,7 +44,7 @@ sales_data = [
 
 cursor.executemany("INSERT INTO sales (product, quantity, price) VALUES (?, ?, ?)", sales_data)
 
-# Save changes and close connection
+## Save changes and close connection
 conn.commit()
 conn.close()
 
@@ -52,7 +52,7 @@ print("✅ Database updated with 10+ products!")
 
 
 
-# 📊 Query 1: Sales Summary
+## 📊 Query 1: Sales Summary
 SELECT product, SUM(quantity) AS total_qty, SUM(quantity * price) AS revenue  
 FROM sales  
 GROUP BY product;
@@ -76,7 +76,7 @@ conn.close()
 
 
 
-# 🏆 Query 2: Top Revenue-Generating Product
+## 🏆 Query 2: Top Revenue-Generating Product
 SELECT product, SUM(quantity * price) AS total_revenue  
 FROM sales  
 GROUP BY product  
@@ -99,7 +99,7 @@ conn.close()
 
 
 
-# 🎨 Visualizations
+## 🎨 Visualizations
 📈 Bar Chart - Total Revenue Per Product
 import matplotlib.pyplot as plt
 
@@ -149,7 +149,7 @@ plt.show()
 
 
 
-#  Pie Chart - Sales Quantity Distribution
+##  Pie Chart - Sales Quantity Distribution
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(8, 8))
@@ -162,13 +162,13 @@ plt.show()
 
 
 
-# 🔹 Exporting Data to CSV
+## 🔹 Exporting Data to CSV
 df.to_csv("updated_sales_summary.csv", index=False)
 print("✅ CSV file saved: updated_sales_summary.csv")
 
 
 
-# 🔹 Results & Insights
+## 🔹 Results & Insights
 ✔ Identified the highest revenue-generating product
 ✔ Visualized revenue & quantity trends per product
 ✔ Stored processed data for future analysis (updated_sales_summary.csv
